@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>BOOK 一覧</title>
+<link rel="stylesheet" href="/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-12">
+			<h1>書籍一覧</h1>
+			<div id="book_info" class="box"></div>
+			<table id="tableList" class="table table-bordered">
+				<tr>
+					<th>書籍ID</th>
+					<th>書籍名</th>
+					<th>価格</th>
+					<th>カテゴリ名</th>
+					<th>出版社名</th>
+					<th></th>
+				</tr>
+				<c:forEach items="${bookList}" var="b" varStatus="st">
+					<tr>
+						<td><c:out value="${b.bookId}" /></td>
+						<td><c:out value="${b.bookName}" /></td>
+						<td><c:out value="${b.price}" /></td>
+						<td><c:out value="${b.categoryName}" /></td>
+						<td><c:out value="${b.publisherName}" /></td>
+						<td><a href="show?bookId=<c:out value = "${b.bookId}"/>"
+							class="btn btn-info">詳細</a> <a
+							href="edit?bookId=<c:out value = "${b.bookId}"/>"
+							class="btn btn-success">編集</a> <a
+							href="delete?bookId=<c:out value = "${b.bookId}"/>"
+							class="btn btn-danger">削除</a></td>
+					</tr>
+				</c:forEach>
+			</table>
+			<form action="input">
+				<input class="btn btn-primary" type="submit" value="新規登録" />
+			</form>
+</body>
+</html>
